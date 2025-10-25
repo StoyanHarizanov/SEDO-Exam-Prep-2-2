@@ -17,4 +17,9 @@ pipeline {
             }
         }
     }
+    stage('Check .NET') {
+    steps {
+        sh 'dotnet --list-runtimes'
+    }
+}
 }
