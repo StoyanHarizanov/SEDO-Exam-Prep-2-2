@@ -23,4 +23,17 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            echo 'Archiving test results...'
+            junit '**/TestResults/*.trx'
+        }
+        success {
+            echo 'Build and tests succeeded!'
+        }
+        failure {
+            echo 'Build or tests failed!'
+        }
+    }
 }
