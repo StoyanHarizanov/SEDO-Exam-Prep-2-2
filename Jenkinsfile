@@ -3,6 +3,13 @@ pipeline {
 
     stages {
 
+        stage('Check .NET') {
+            steps {
+                echo 'Checking installed .NET runtimes...'
+                sh 'dotnet --list-runtimes'
+            }
+        }
+
         stage('Build .NET Project') {
             steps {
                 echo 'Building the application...'
@@ -17,9 +24,4 @@ pipeline {
             }
         }
     }
-    stage('Check .NET') {
-    steps {
-        sh 'dotnet --list-runtimes'
-    }
-}
 }
