@@ -1,23 +1,26 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
+                echo 'Checking out Repo 2...'
                 checkout scm
             }
         }
 
         stage('Build') {
             steps {
+                echo 'Building the application...'
                 sh 'dotnet build'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'dotnet test --no-build --verbosity normal'
+                echo 'Running tests...'
+                sh 'dotnet test --no-build --logger "trx;LogFileName=TestResults.trx"'
             }
         }
     }
-
-    }
+}
